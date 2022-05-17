@@ -27,5 +27,7 @@ private:
 
 public:
 	bool Init();
+	void Run();
+	void Render();
 };
 

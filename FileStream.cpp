@@ -103,6 +103,21 @@ void CFileStream::Write(void* pData, int iSize)
 	fwrite(pData, iSize, 1, m_pFile);
 }
 
+void CFileStream::WriteLine(void* pData, int iSize)
+{
+	if (!m_bOpen)
+		return;
+
+	char* pBuffer = new char[iSize + 1];
+	
+	*(pBuffer + iSize) = '\n';
+	// pBuffer[iSize] = '\n';
+
+	fwrite(pBuffer, iSize + 1, 1, m_pFile);
+
+	delete[]	pBuffer;
+}
+
 
 
 
