@@ -143,6 +143,8 @@
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="FileStream.cpp" />
     <ClCompile Include="MapManager.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Running.cpp" />
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
@@ -150,6 +152,8 @@
     <ClInclude Include="Core.h" />
     <ClInclude Include="FileStream.h" />
     <ClInclude Include="MapManager.h" />
+    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Stage.h" />
     <ClInclude Include="value.h" />
   </ItemGroup>

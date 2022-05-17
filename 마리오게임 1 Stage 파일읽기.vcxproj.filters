@@ -22,6 +22,9 @@
     <Filter Include="01. Core\01. File">
       <UniqueIdentifier>{345c2515-de32-494e-85d9-36e4163fd35c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="03. Object">
+      <UniqueIdentifier>{cfd990fb-d3d1-4f7d-96da-405cc64b80ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FileStream.cpp">
@@ -39,6 +42,12 @@
     <ClCompile Include="Running.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>03. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>03. Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FileStream.h">
@@ -55,6 +64,12 @@
     </ClInclude>
     <ClInclude Include="value.h">
       <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>03. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>03. Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

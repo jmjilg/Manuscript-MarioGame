@@ -1,5 +1,7 @@
 #include "Core.h"
 #include "MapManager.h"
+#include "ObjectManager.h"
+#include "Player.h"
 
 CCore* CCore::m_pInst = NULL;
 
@@ -11,6 +13,7 @@ CCore::CCore()
 CCore::~CCore()
 {
 	CMapManager::DestroyInst();
+	CObjectManager::DestroyInst();
 }
 
 CCore* CCore::GetInst()
@@ -32,9 +35,27 @@ bool CCore::Init()
 	if (!CMapManager::GetInst()->Init())
 		return false;
 
+	// 오브젝트 관리자 초기화
+	if (!CObjectManager::GetInst()->Init())
+		return false;
+
 	return true;
 }
 
 void CCore::Run()
 {
+	//CMapManager::GetInst()->Render();
+	CPlayer* pPlayer = CObjectManager::GetInst()->GetPlayer();
+
+	while (true)
+	{
+		system("cls");
+
+		pPlayer->Update();
+
+		CMapManager::GetInst()->Render();
+
+		Sleep(100);
+	}
+
 }
