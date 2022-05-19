@@ -2,6 +2,15 @@
 
 #include "value.h"
 
+enum JUMP_DIR
+{
+	JD_STOP,
+	JD_UP,
+	JD_DOWN
+};
+
+#define JUMP_BLOCK_MAX	2
+
 class CPlayer
 {
 public:
@@ -9,25 +18,27 @@ public:
 	~CPlayer();
 
 private:
-	int		m_iX;
-	int		m_iY;
-
-public:
-	void SetPos(int x, int y)
-	{
-		m_iX = x;
-		m_iY = y;
-	}
+	POINT	m_tPos;
+	bool	m_bJump;
+	int		m_iJumpDir;
+	int		m_iJumpState;
 
 public:
 	int GetX()
 	{
-		return m_iX;
+		return m_tPos.x;
 	}
 
 	int GetY()
 	{
-		return m_iY;
+		return m_tPos.y;
+	}
+
+public:
+	void SetPos(int x, int y)
+	{
+		m_tPos.x = x;
+		m_tPos.y = y;
 	}
 
 public:

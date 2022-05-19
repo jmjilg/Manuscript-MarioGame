@@ -3,15 +3,6 @@
 #include "Player.h"
 #include "ObjectManager.h"
 
-enum STAGE_BLOCK_TYPE
-{
-	SBT_WALL = '0',
-	SBT_ROAD = '1',
-	SBT_START = '2',
-	SBT_END = '3',
-	SBT_COIN = '4'
-};
-
 CStage::CStage()
 {
 }
@@ -36,6 +27,21 @@ bool CStage::Init(char* pFileName)
 	{
 		int iSize = 0;
 		file.ReadLine(m_cStage[i], iSize);
+
+		for (int j = 0; j < 50; ++j)
+		{
+			if (m_cStage[i][j] == SBT_START)
+			{
+				m_tStart.x = j;
+				m_tStart.y = i;
+			}
+
+			else if (m_cStage[i][j] == SBT_END)
+			{
+				m_tEnd.x = j;
+				m_tEnd.y = i;
+			}
+		}
 	}
 
 	return true;
@@ -75,11 +81,15 @@ void CStage::Render()
 				cout << "  ";
 
 			else if (m_cStage[i][j] == SBT_START)
+			{
 				cout << "◑";
-
+				m_tStart.x = j;
+				m_tStart.y = i;
+			}
 			else if (m_cStage[i][j] == SBT_END)
+			{
 				cout << "◐";
-
+			}
 			else if (m_cStage[i][j] == SBT_COIN)
 				cout << "＠";
 		}
