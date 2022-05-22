@@ -17,8 +17,10 @@ bool CPlayer::Init()
 	m_tPos.y = 8;
 
 	m_bJump = false;
+	m_bComplete = false;
 	m_iJumpDir = JD_STOP;
 	m_iJumpState = 0;
+	m_iScore = 0;
 
 	return true;
 }
@@ -47,7 +49,7 @@ void CPlayer::Update()
 		if (pStage->GetBlock(m_tPos.x + 1, m_tPos.y) != SBT_WALL)
 		{
 			++m_tPos.x;
-			if (m_tPos.x >= 50)
+			if (m_tPos.x >= BLOCK_X)
 				m_tPos.x = 49;
 		}
 	}
@@ -93,17 +95,41 @@ void CPlayer::Update()
 				--m_tPos.y = BLOCK_Y - 1;
 			}
 
-			if (pStage->GetBlock(m_tPos.x, m_tPos.y + 1) == SBT_WALL)
+			else if (pStage->GetBlock(m_tPos.x, m_tPos.y + 1) == SBT_WALL)
 			{
 				m_iJumpDir = JD_STOP;
 				m_bJump = false;
 			}
 
 			else
-			{
 				++m_tPos.y;
-			}
+
 			break;
 		}
+	}
+
+	if (pStage->GetBlock(m_tPos.x, m_tPos.y + 1) != SBT_WALL && !m_bJump)
+	{
+		++m_tPos.y;
+	}
+
+	if (pStage->GetBlock(m_tPos.x, m_tPos.y) == SBT_COIN)
+	{
+		pStage->ChangeBlock(m_tPos.x, m_tPos.y, SBT_ROAD);
+		m_iScore += 1000;
+	}
+
+	else if (pStage->GetBlock(m_tPos.x, m_tPos.y) == SBT_END)
+	{
+		m_bComplete = true;
+	}
+
+	if (m_tPos.y >= BLOCK_Y)
+	{
+		cout << "플레이어 사망" << endl;
+		m_tPos = pStage->GetStart();
+		m_iScore = 0;
+		pStage->ResetStage();
+		system("pause");
 	}
 }

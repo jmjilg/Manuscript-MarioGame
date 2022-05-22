@@ -61,8 +61,20 @@ void CMapManager::Run(int iStage)
 	while (true)
 	{
 		system("cls");
+
+		if (GetAsyncKeyState('Q') & 0x8000)
+			break;
+
 		pPlayer->Update();
 		m_pStage[iStage]->Render();
+		cout << "Score : " << pPlayer->GetScore() << endl;
+
+		if (pPlayer->GetComplete())
+		{
+			cout << "¿Ï·á" << endl;
+			system("pause");
+			break;
+		}
 
 		Sleep(100);
 	}

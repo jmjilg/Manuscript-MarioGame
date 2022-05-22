@@ -22,6 +22,8 @@ private:
 	bool	m_bJump;
 	int		m_iJumpDir;
 	int		m_iJumpState;
+	int		m_iScore;
+	bool	m_bComplete;
 
 public:
 	int GetX()
@@ -32,6 +34,16 @@ public:
 	int GetY()
 	{
 		return m_tPos.y;
+	}
+
+	int GetScore()
+	{
+		return m_iScore;
+	}
+
+	bool GetComplete()
+	{
+		return m_bComplete;
 	}
 
 public:

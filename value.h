@@ -20,6 +20,10 @@ using namespace std;
 #define BLOCK_X 50
 #define BLOCK_Y 10
 
+// Render Block Count
+#define RENDER_BLOCK_X	20
+#define RENDER_BLOCK_Y	5
+
 static int InputInt()
 {
 	int		iInput;
