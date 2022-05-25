@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Core.cpp" />
     <ClCompile Include="FileStream.cpp" />
     <ClCompile Include="MapManager.cpp" />
@@ -149,6 +150,7 @@
     <ClCompile Include="Stage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Bullet.h" />
     <ClInclude Include="Core.h" />
     <ClInclude Include="FileStream.h" />
     <ClInclude Include="MapManager.h" />

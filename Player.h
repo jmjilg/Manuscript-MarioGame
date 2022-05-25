@@ -24,6 +24,7 @@ private:
 	int		m_iJumpState;
 	int		m_iScore;
 	bool	m_bComplete;
+	bool	m_bBulletFire;
 
 public:
 	int GetX()
@@ -44,6 +45,14 @@ public:
 	bool GetComplete()
 	{
 		return m_bComplete;
+	}
+
+public:
+	void Reset()
+	{
+		m_bComplete = false;
+		m_bBulletFire = false;
+		m_iScore = 0;
 	}
 
 public:

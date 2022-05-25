@@ -55,6 +55,8 @@ void CMapManager::Run(int iStage)
 	CPlayer*	 pPlayer = CObjectManager::GetInst()->GetPlayer();
 	m_iEnableStage = iStage;
 
+	m_pStage[iStage]->ResetStage();
+
 	pPlayer->SetPos(m_pStage[iStage]->GetStart().x,
 		m_pStage[iStage]->GetStart().y);
 
@@ -72,7 +74,7 @@ void CMapManager::Run(int iStage)
 		if (pPlayer->GetComplete())
 		{
 			cout << "¿Ï·á" << endl;
-			system("pause");
+			pPlayer->Reset();
 			break;
 		}
 

@@ -8,7 +8,9 @@ enum STAGE_BLOCK_TYPE
 	SBT_ROAD = '1',
 	SBT_START = '2',
 	SBT_END = '3',
-	SBT_COIN = '4'
+	SBT_COIN = '4',
+	SBT_ITEM_BULLET = '5',
+	SBT_ITEM_BIG = '6'
 };
 
 class CStage

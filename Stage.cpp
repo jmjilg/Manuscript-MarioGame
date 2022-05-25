@@ -126,6 +126,12 @@ void CStage::Render()
 
 			else if (m_cStage[i][j] == SBT_COIN)
 				cout << "＠";
+
+			else if (m_cStage[i][j] == SBT_ITEM_BULLET)
+				cout << "♥";
+
+			else if (m_cStage[i][j] == SBT_ITEM_BIG)
+				cout << "◎";
 		}
 
 		cout << endl;

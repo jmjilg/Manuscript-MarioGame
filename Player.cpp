@@ -1,11 +1,11 @@
 #include "Player.h"
 #include "MapManager.h"
 #include "Stage.h"
+#include "Objectmanager.h"
 
 CPlayer::CPlayer()
 {
 }
-
 
 CPlayer::~CPlayer()
 {
@@ -21,6 +21,7 @@ bool CPlayer::Init()
 	m_iJumpDir = JD_STOP;
 	m_iJumpState = 0;
 	m_iScore = 0;
+	m_bBulletFire = false;
 
 	return true;
 }
@@ -79,6 +80,18 @@ void CPlayer::Update()
 			else if (pStage->GetBlock(m_tPos.x, m_tPos.y - 1) == SBT_WALL)
 			{
 				--m_iJumpState;
+
+				// 벽을 깼을때 아이템을 랜덤하게 둘중 하나로 나오게 한다.
+				int iRand = rand() % 100;
+				STAGE_BLOCK_TYPE	eBlockType;
+
+				if (iRand < 90)
+					eBlockType = SBT_ITEM_BULLET;
+
+				else
+					eBlockType = SBT_ITEM_BIG;
+
+				pStage->ChangeBlock(m_tPos.x, m_tPos.y - 1, eBlockType);
 				m_iJumpDir = JD_DOWN;
 			}
 
@@ -113,10 +126,18 @@ void CPlayer::Update()
 		++m_tPos.y;
 	}
 
-	if (pStage->GetBlock(m_tPos.x, m_tPos.y) == SBT_COIN)
+	STAGE_BLOCK_TYPE	eCurBlockType = (STAGE_BLOCK_TYPE)pStage->GetBlock(m_tPos.x, m_tPos.y);
+
+	if (eCurBlockType == SBT_COIN)
 	{
 		pStage->ChangeBlock(m_tPos.x, m_tPos.y, SBT_ROAD);
 		m_iScore += 1000;
+	}
+
+	else if (eCurBlockType == SBT_ITEM_BULLET)
+	{
+		m_bBulletFire = true;
+		pStage->ChangeBlock(m_tPos.x, m_tPos.y, SBT_ROAD);
 	}
 
 	else if (pStage->GetBlock(m_tPos.x, m_tPos.y) == SBT_END)
@@ -131,5 +152,12 @@ void CPlayer::Update()
 		m_iScore = 0;
 		pStage->ResetStage();
 		system("pause");
+		return;
+	}
+
+	// VK_LBUTTON : 마우스 왼쪽 버튼을 눌렀을때
+	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && m_bBulletFire)
+	{
+		CObjectManager::GetInst()->CreateBullet();
 	}
 }
