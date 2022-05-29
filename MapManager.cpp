@@ -67,7 +67,8 @@ void CMapManager::Run(int iStage)
 		if (GetAsyncKeyState('Q') & 0x8000)
 			break;
 
-		pPlayer->Update();
+		CObjectManager::GetInst()->Update();
+		//pPlayer->Update();
 		m_pStage[iStage]->Render();
 		cout << "Score : " << pPlayer->GetScore() << endl;
 

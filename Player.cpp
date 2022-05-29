@@ -85,7 +85,7 @@ void CPlayer::Update()
 				int iRand = rand() % 100;
 				STAGE_BLOCK_TYPE	eBlockType;
 
-				if (iRand < 90)
+				if (iRand < 50)
 					eBlockType = SBT_ITEM_BULLET;
 
 				else
@@ -140,6 +140,13 @@ void CPlayer::Update()
 		pStage->ChangeBlock(m_tPos.x, m_tPos.y, SBT_ROAD);
 	}
 
+	// Ä¿Áö´Â ¾ÆÀÌÅÛ È¹µæ½Ã
+	else if (eCurBlockType == SBT_ITEM_BIG)
+	{
+		//m_bBulletFire = true;
+		//pStage->ChangeBlock(m_tPos.x, m_tPos.y, SBT_ROAD);
+	}
+
 	else if (pStage->GetBlock(m_tPos.x, m_tPos.y) == SBT_END)
 	{
 		m_bComplete = true;
@@ -158,6 +165,8 @@ void CPlayer::Update()
 	// VK_LBUTTON : ¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» ´­·¶À»¶§
 	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000 && m_bBulletFire)
 	{
-		CObjectManager::GetInst()->CreateBullet();
+		POINT	tPos = m_tPos;
+		tPos.x++;
+		CObjectManager::GetInst()->CreateBullet(tPos);
 	}
 }
