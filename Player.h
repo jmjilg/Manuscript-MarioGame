@@ -25,6 +25,7 @@ private:
 	int		m_iScore;
 	bool	m_bComplete;
 	bool	m_bBulletFire;
+	bool	m_bBigItem;
 
 public:
 	int GetX()
@@ -47,11 +48,17 @@ public:
 		return m_bComplete;
 	}
 
+	bool GetBigItemEnable()
+	{
+		return m_bBigItem;
+	}
+
 public:
 	void Reset()
 	{
 		m_bComplete = false;
 		m_bBulletFire = false;
+		m_bBigItem = false;
 		m_iScore = 0;
 	}
 

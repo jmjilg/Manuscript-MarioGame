@@ -109,7 +109,8 @@ void CStage::Render()
 	{
 		for (int j = iXMin; j < iXCount; ++j)
 		{
-			if (i == iY && j == iX)
+			if ((i == iY || (i == iY - 1 && pPlayer->GetBigItemEnable())) && 
+				j == iX)
 				cout << "§";
 
 			// 현재 위치에 총알이 있을 경우 총알로 출력한다.
