@@ -176,6 +176,13 @@ void CStage::Render()
 
 void CStage::ResetStage()
 {
+	for (int i = 0; i < m_iMonsterCount; ++i)
+	{
+		SAFE_DELETE(m_pMonsterArray[i]);
+	}
+
+	m_iMonsterCount = 0;
+
 	for (int i = 0; i < BLOCK_Y; ++i)
 	{
 		for (int j = 0; j < BLOCK_X; ++j)
@@ -184,6 +191,7 @@ void CStage::ResetStage()
 			
 			if (m_cOriginStage[i][j] == SBT_MONSTER)
 			{
+				CreateMonster(j, i);
 				// 7인부분을 체크하여몬스터 생성만 하고 ROAD로
 				// 실제 맵을 바꿔준다.
 				m_cStage[i][j] = SBT_ROAD;

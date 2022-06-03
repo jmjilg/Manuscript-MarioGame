@@ -11,6 +11,8 @@ public:
 private:
 	POINT	m_tPos;
 	int		m_iDir; // 움직일 방향이다.
+	int		m_iSpeed;
+	int		m_iFrameCount;
 
 public:
 	void SetPos(int x, int y)
