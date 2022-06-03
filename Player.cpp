@@ -185,6 +185,12 @@ void CPlayer::Update()
 		m_bComplete = true;
 	}
 
+	else if (pStage->CheckMonster(m_tPos.x, m_tPos.y))
+	{
+		m_tPos = pStage->GetStart();
+		Sleep(200);
+	}
+
 	if (m_tPos.y >= BLOCK_Y)
 	{
 		cout << "플레이어 사망" << endl;

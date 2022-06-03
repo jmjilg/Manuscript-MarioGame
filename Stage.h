@@ -10,7 +10,8 @@ enum STAGE_BLOCK_TYPE
 	SBT_END = '3',
 	SBT_COIN = '4',
 	SBT_ITEM_BULLET = '5',
-	SBT_ITEM_BIG = '6'
+	SBT_ITEM_BIG = '6',
+	SBT_MONSTER = '7'
 };
 
 class CStage
@@ -24,6 +25,11 @@ private:
 	char	m_cStage[BLOCK_Y][BLOCK_X];
 	POINT	m_tStart;
 	POINT	m_tEnd;
+	// 포인터 동적배열을 만들기 위해서 선언한다.
+	// 그 이유는 동적할당한 몬스터 주소를 담아놓기 위해서이다.
+	class CMonster** m_pMonsterArray;
+	int				 m_iMonsterCount; // 몬스터가 몇마리 생성되었는지 체크
+	int				 m_iMonsterArrayCount; // 몬스터 배열 크기
 
 public:
 	POINT GetStart()
@@ -52,7 +58,10 @@ public:
 
 	// 이 함수는 파일에서 정보를 읽어와서 설정할 목적의 함수이다.
 	bool Init(char* pFileName);
+	void Update();
 	void Render();
 	void ResetStage();
+	class CMonster* CreateMonster(int x, int y);
+	bool CheckMonster(int x, int y);
 };
 

@@ -69,6 +69,7 @@ void CMapManager::Run(int iStage)
 
 		CObjectManager::GetInst()->Update();
 		//pPlayer->Update();
+		m_pStage[iStage]->Update();
 		m_pStage[iStage]->Render();
 		cout << "Score : " << pPlayer->GetScore() << endl;
 
